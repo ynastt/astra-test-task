@@ -51,7 +51,7 @@ func (p *Postgres) CreateWarningsTable() error {
     warning_id SERIAL PRIMARY KEY, 
     ruleId text NOT NULL,
     uri text NOT NULL,
-    startLine int NOT NULL CHECK (xseverity >= 0),
+    startLine int NOT NULL CHECK (startLine >= 0),
     xseverity int NOT NULL CHECK (xseverity >= 0 AND xseverity <= 2));`
 
 	_, err := p.db.Exec(context.Background(), createquery)
